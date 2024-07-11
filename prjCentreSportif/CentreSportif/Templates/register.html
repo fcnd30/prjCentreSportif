@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inscription</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #f7f7f7;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            padding: 10px;
+            font-size: 1.1em;
+        }
+        .btn-primary {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 4px;
+        }
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Inscription</h2>
+        {% if message %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endif %}
+        <form action="{% url 'sign_up' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_nom_client"><span class="emoji">👤</span> Nom</label>
+                <input type="text" name="nom_client" id="id_nom_client" class="form-control" placeholder="Nom" required>
+                {% if errors.nom %}
+                    <div class="alert alert-danger">{{ errors.nom }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_prenom_client"><span class="emoji">👤</span> Prénom</label>
+                <input type="text" name="prenom_client" id="id_prenom_client" class="form-control" placeholder="Prénom" required>
+                {% if errors.prenom %}
+                    <div class="alert alert-danger">{{ errors.prenom }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_username"><span class="emoji">👤</span> Nom d'utilisateur</label>
+                <input type="text" name="username" id="id_username" class="form-control" placeholder="Nom d'utilisateur" required>
+                {% if errors.username %}
+                    <div class="alert alert-danger">{{ errors.username }}</div>
+                    <ul>
+                        {% for suggestion in suggestions %}
+                            <li>{{ suggestion }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_email"><span class="emoji">📧</span> Email</label>
+                <input type="email" name="email" id="id_email" class="form-control" placeholder="Email" required>
+                {% if errors.email %}
+                    <div class="alert alert-danger">{{ errors.email }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_age"><span class="emoji">🎂</span> Âge</label>
+                <input type="number" name="age" id="id_age" class="form-control" placeholder="Âge" required>
+                {% if errors.age %}
+                    <div class="alert alert-danger">{{ errors.age }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_choix_sport"><span class="emoji">⚽</span> Choix de sport</label>
+                <input type="text" name="choix_sport" id="id_choix_sport" class="form-control" placeholder="Choix de sport" required>
+                {% if errors.choix_sport %}
+                    <div class="alert alert-danger">{{ errors.choix_sport }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_password"><span class="emoji">🔒</span> Mot de passe</label>
+                <input type="password" name="password" id="id_password" class="form-control" placeholder="Entrez le mot de passe" required>
+                {% if errors.password %}
+                    <div class="alert alert-danger">{{ errors.password }}</div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+        </form>
+    </div>
+</body>
+</html>

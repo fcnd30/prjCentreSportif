@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifier l'horaire</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Modifier l'horaire</h2>
+        <form method="post" action="{% url 'edit_horaire' horaire.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="activite">Activité</label>
+                <select class="form-control" id="activite" name="activite" required>
+                    {% for activite in activites %}
+                    <option value="{{ activite.id }}" {% if activite.id == horaire.activite.id %}selected{% endif %}>{{ activite.nom_activite }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="jour">Jour</label>
+                <input type="text" class="form-control" id="jour" name="jour" value="{{ horaire.jour }}" required>
+            </div>
+            <div class="form-group">
+                <label for="heure_debut">Heure de début</label>
+                <input type="time" class="form-control" id="heure_debut" name="heure_debut" value="{{ horaire.heure_debut }}" required>
+            </div>
+            <div class="form-group">
+                <label for="heure_fin">Heure de fin</label>
+                <input type="time" class="form-control" id="heure_fin" name="heure_fin" value="{{ horaire.heure_fin }}" required>
+            </div>
+            <div class="form-group">
+                <label for="moniteur">Moniteur</label>
+                <select class="form-control" id="moniteur" name="moniteur" required>
+                    {% for moniteur in moniteurs %}
+                    <option value="{{ moniteur.id }}" {% if moniteur.id == horaire.moniteur.id %}selected{% endif %}>{{ moniteur.nom }} {{ moniteur.prenom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Modifier</button>
+            <a href="{% url 'admin_horaires' %}" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</body>
+</html>

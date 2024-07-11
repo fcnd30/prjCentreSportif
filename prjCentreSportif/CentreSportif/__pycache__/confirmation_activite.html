@@ -1,0 +1,67 @@
+<!-- confirmation.html -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation d'inscription</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            padding: 10px;
+            font-size: 1.1em;
+        }
+        .btn-primary {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 4px;
+        }
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Confirmation d'inscription</h2>
+        <p>Merci <strong>{{ inscription.client.nom_client }} {{ inscription.client.prenom_client }}</strong>, votre inscription à l'activité <strong>{{ inscription.activite.nom_activite }}</strong> a été enregistrée avec succès.</p>
+        <p>Voici les détails de votre inscription :</p>
+        <ul>
+            <li><strong>Nom :</strong> {{ inscription.client.nom_client }}</li>
+            <li><strong>Prénom :</strong> {{ inscription.client.prenom_client }}</li>
+            <li><strong>Email :</strong> {{ inscription.client.email }}</li>
+            <li><strong>Téléphone :</strong> {{ inscription.client.telephone }}</li>
+            <li><strong>Activité :</strong> {{ inscription.activite.nom_activite }}</li>
+            <li><strong>Prix :</strong> ${{ inscription.activite.prix }}</li>
+            <li><strong>Catégorie :</strong> {{ inscription.activite.categories }}</li>
+            <li><strong>Date d'inscription :</strong> {{ inscription.date_inscription }}</li>
+            <li><strong>Statut :</strong> {{ inscription.statut_inscription }}</li>
+            <li><strong>Horaire :</strong> {{ inscription.horaire }}</li>
+        </ul>
+        <a href="{% url 'accueil' %}" class="btn btn-primary btn-block">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

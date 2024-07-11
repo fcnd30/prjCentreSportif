@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestion des inscriptions</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Inscriptions</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nom du client</th>
+                    <th scope="col">Prénom du client</th>
+                    <th scope="col">Activité</th>
+                    <th scope="col">Date d'inscription</th>
+                    <th scope="col">Statut de l'inscription</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inscription in inscriptions %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ inscription.client.nom_client }}</td>
+                    <td>{{ inscription.client.prenom_client }}</td>
+                    <td>{{ inscription.activite.nom_activite }}</td>
+                    <td>{{ inscription.date_inscription }}</td>
+                    <td>{{ inscription.statut_inscription }}</td>
+                    <td>
+                        <form method="post" action="{% url 'delete_inscription' inscription.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-primary mt-3">Retour au tableau de bord</a>
+    </div>
+</body>
+</html>

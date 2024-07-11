@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tableau de bord de l'administrateur</title>
+    <!-- Inclure Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'gestion_activites' %}">Gérer les activités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'gestion_clients' %}">Gérer les clients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin_moniteurs' %}">Gérer les moniteurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'gestion_inscription' %}">Gestion des inscriptions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'gestion_paiements' %}">Historiques de paiement</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'gestion_moniteurs' %}">Gestion des moniteurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'log_out' %}">Déconnexion</a>
+                    </li>
+                   
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container mt-5">
+        <h1>Bienvenue sur le tableau de bord de l'administrateur</h1>
+        <p>Sélectionnez une option dans le menu pour commencer.</p>
+    </main>
+</body>
+</html>
+
+
+
+
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Tableau de bord de l'administrateur</title>
+</head>
+<body>
+    <header>
+        <h1>Gestion des activités, clients et moniteurs</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'admin_activites' %}">Gérer les activités</a></li>
+                <li><a href="{% url 'admin_clients' %}">Gérer les clients</a></li>
+                <li><a href="{% url 'admin_moniteurs' %}">Gérer les moniteurs</a></li>
+                <li><a href="{% url 'log_out' %}">Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h2>Activités</h2>
+        <ul>
+            {% for activite in activites %}
+            <li>{{ activite.nom_activite }} - {{ activite.prix }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h2>Clients</h2>
+        <ul>
+            {% for client in clients %}
+            <li>{{ client.nom_client }} {{ client.prenom_client }} - {{ client.email }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h2>Moniteurs</h2>
+        <ul>
+            {% for moniteur in moniteurs %}
+            <li>{{ moniteur.nom }} - {{ moniteur.specialite }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+</body>
+</html> {% endcomment %}

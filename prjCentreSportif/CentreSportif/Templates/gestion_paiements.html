@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestion des paiements</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Paiements</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nom du client</th>
+                    <th scope="col">Prénom du client</th>
+                    <th scope="col">Montant</th>
+                    <th scope="col">Date de paiement</th>
+                    <th scope="col">Mode de paiement</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for paiement in paiements %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ paiement.inscription.client.nom_client }}</td>
+                    <td>{{ paiement.inscription.client.prenom_client }}</td>
+                    <td>{{ paiement.montant }} €</td>
+                    <td>{{ paiement.date_paiement }}</td>
+                    <td>{{ paiement.mode_paiement }}</td>
+                    <td>
+                        <form method="post" action="{% url 'delete_paiement' paiement.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            {% comment %} <button type="submit" class="btn btn-danger btn-sm">Supprimer</button> {% endcomment %}
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-primary mt-3">Retour au tableau de bord</a>
+    </div>
+</body>
+</html>

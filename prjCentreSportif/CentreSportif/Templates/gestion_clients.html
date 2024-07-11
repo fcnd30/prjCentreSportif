@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestion des clients</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Clients</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Courriel</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Sport choisi</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ client.nom_client }}</td>
+                    <td>{{ client.prenom_client }}</td>
+                    <td>{{ client.user.username }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.age }}</td>
+                    <td>{{ client.choix_sport }}</td>
+                    <td>{{ client.role }}</td>
+                    <td> 
+                        <form method="post" action="{% url 'delete_client' client.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-primary mt-3">Retour au tableau de bord</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestion des moniteurs</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Moniteurs</h2>
+        <ul class="list-group">
+            {% for moniteur in moniteurs %}
+            <li class="list-group-item">{{ moniteur.nom }} - {{ moniteur.specialite }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-primary mt-3">Retour au tableau de bord</a>
+    </div>
+</body>
+</html>

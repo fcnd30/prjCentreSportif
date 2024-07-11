@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifier l'activité</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Modifier l'activité</h2>
+        <form method="post" action="{% url 'edit_activite' activite.id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nom">Nom de l'activité</label>
+                <input type="text" class="form-control" id="nom" name="nom" value="{{ activite.nom }}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required>{{ activite.description }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Modifier</button>
+            <a href="{% url 'admin_activites' %}" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</body>
+</html>
